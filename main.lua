@@ -37,28 +37,26 @@ world.solidTiles = {
   [1] = true
 }
 
-local lights = {
-  {
-    x = 7,
-    y = 4
-  }
+local player = {
+  x = math.ceil(w/2),
+  y = math.ceil(h/2)
 }
 
 local function handleInput(i)
   if i == "d" then
-    lights[1].x = lights[1].x + 1
+    player.x = player.x + 1
   elseif i == "a" then
-    lights[1].x = lights[1].x - 1
+    player.x = player.x - 1
   elseif i == "w" then
-    lights[1].y = lights[1].y - 1
+    player.y = player.y - 1
   elseif i == "s" then
-    lights[1].y = lights[1].y + 1
+    player.y = player.y + 1
   end
-  if world.tiles[lights[1].y][lights[1].x] == 2 then
-    world.tiles[lights[1].y][lights[1].x] = 0
+  if world.tiles[player.y][player.x] == 2 then
+    world.tiles[player.y][player.x] = 0
   end
   os.execute("clear")
-  world:render(lights)
+  world:render{player}
   os.execute("sleep 0.01")
 end
 
