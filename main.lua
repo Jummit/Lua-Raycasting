@@ -1,19 +1,16 @@
 local world = require("world")()
 
-world.tiles = {
-  {0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0},
-  {0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0},
-  {0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0},
-  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0},
-  {0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0},
-  {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0}
-}
+world.tiles = {}
+
+-- generate the floor
 for y = 1, 20 do
   world.tiles[y] = {}
   for x = 1, 100 do
     world.tiles[y][x] = 0
   end
 end
+
+-- generate chunks of solid tiles
 for i = 1, 120 do
   local x = math.random(1, 99)
   local y = math.random(1, 19)
@@ -22,10 +19,12 @@ for i = 1, 120 do
   world.tiles[y+1][x] = 1
   world.tiles[y+1][x+1] = 1
 end
+
 world.tileset = {
   [0] = " ",
   [1] = "#"
 }
+
 world.solidTiles = {
   [1] = true
 }
