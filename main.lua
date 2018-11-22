@@ -52,9 +52,13 @@ local function handleInput(i)
   elseif i == "s" then
     player.y = player.y + 1
   end
+
+  -- if the tile the player is standing on is a coin, pick it up
   if world.tiles[player.y][player.x] == 2 then
     world.tiles[player.y][player.x] = 0
   end
+
+  -- render the world and wait a bit
   os.execute("clear")
   world:render{player}
   os.execute("sleep 0.01")
@@ -62,6 +66,7 @@ end
 
 while true do
   local i = io.read()
+  -- go over every character and handle the input
   for x = 1, #i do
     handleInput(string.sub(i, x, x))
   end
